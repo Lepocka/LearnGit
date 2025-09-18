@@ -1,15 +1,22 @@
-first_num = input('Input first number: ')
+def number_validation(input_number):
+    number = input_number
 
-while not (str.isdigit(first_num)):
-    print('This is not a number')
-    first_num = input('Input first number again: ')
+    while not (str.isdigit(number)):
+        print('This is not a number')
+        number = input('Input number again: ')
+
+    return number 
+
+first_number = input('Input first number: ')
+
+first_number = number_validation(first_number)
 
 second_number = input('Input second number: ')
 
-while not (str.isdigit(second_number)):
-    print('This is not a number')
-    second_number = input('Input second number again: ')
+second_number = number_validation(second_number)
 
-result = int(first_num) + int(second_number)
+result = int(first_number) + int(second_number)
 
 print(f'Result: {result}')
+
+

@@ -1,7 +1,18 @@
+def is_number(input_number):
+    try:
+        int(input_number)
+        return True
+    except ValueError:
+        try:
+            float(input_number)
+            return True
+        except ValueError:
+            return False
+
 def number_validation(input_number):
     number = input_number
 
-    while not (str.isdigit(number)):
+    while not (is_number(number)):
         print('This is not a number')
         number = input('Input number again: ')
 
@@ -15,7 +26,7 @@ second_number = input('Input second number: ')
 
 second_number = number_validation(second_number)
 
-result = int(first_number) + int(second_number)
+result = float(first_number) + float(second_number)
 
 print(f'Result: {result}')
 

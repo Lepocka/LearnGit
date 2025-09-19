@@ -1,8 +1,4 @@
 def is_number(input_number):
-    # try:
-    #     int(input_number)
-    #     return True
-    # except ValueError:
     try:
         float(input_number)
         return True

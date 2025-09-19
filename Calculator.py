@@ -1,13 +1,13 @@
 def is_number(input_number):
+    # try:
+    #     int(input_number)
+    #     return True
+    # except ValueError:
     try:
-        int(input_number)
+        float(input_number)
         return True
     except ValueError:
-        try:
-            float(input_number)
-            return True
-        except ValueError:
-            return False
+        return False
 
 def number_validation(input_number):
     number = input_number

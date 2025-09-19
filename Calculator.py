@@ -25,5 +25,3 @@ second_number = number_validation(second_number)
 result = float(first_number) + float(second_number)
 
 print(f'Result: {result}')
-
-

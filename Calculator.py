@@ -2,28 +2,17 @@ class input_validator:
     def __init__(self, input_value: str = ''):
         self.input_value = input_value
     
-<<<<<<< HEAD
     def set_input_value(self, input_value):
         self.input_value = input_value
 
     def is_number(self, input_number):
-=======
-    def set_input_value(self, input_value: str) -> None:
-        self.input_value = input_value
-
-    def is_number(self, input_number: str) -> bool:
->>>>>>> d678f89880ed9738e08d6bfc6a5bbe452b5a8c49
         try:
             float(input_number)
             return True
         except ValueError:
             return False
 
-<<<<<<< HEAD
     def get_correct_input_number(self):
-=======
-    def get_correct_input_number(self) -> str:
->>>>>>> d678f89880ed9738e08d6bfc6a5bbe452b5a8c49
         input_value = self.input_value
         
         while not (self.is_number(input_value)):
@@ -32,11 +21,7 @@ class input_validator:
 
         return input_value
     
-<<<<<<< HEAD
     def get_correct_input_operator(self):
-=======
-    def get_correct_input_operator(self) -> str:
->>>>>>> d678f89880ed9738e08d6bfc6a5bbe452b5a8c49
         input_value = self.input_value
 
         while not self.is_number(input_value) or not float(input_value) in [0, 1, 2, 3]:
@@ -50,9 +35,6 @@ def operator_instruction():
     print('1: -')
     print('2: *')
     print('3: /')
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 class Calculator:
     def __init__(self, operator, first_num, second_num):
@@ -81,31 +63,7 @@ class Calculator:
             return self.multiplication()
         elif float(self.operator) == 3:
             return self.division()
-        else:
-            print('Incorrect input')
-            operator_instruction()
-            new_operator = input('Choose operator again: ')
-            new_operator = number_validation(new_operator)
-            self.operator = new_operator
-            return self.calculating()
-=======
-def calculating(operator, first_num, second_num):
-=======
-def calculating(operator: str, first_num: str, second_num: str) -> float:
->>>>>>> d678f89880ed9738e08d6bfc6a5bbe452b5a8c49
-    while True:
-        if float(operator) == 0:
-            return float(first_num) + float(second_num)
-        elif float(operator) == 1:
-            return float(first_num) - float(second_num)
-        elif float(operator) == 2:
-            return float(first_num) * float(second_num)
-        elif float(operator) == 3:
-            return float(first_num) / float(second_num)
-<<<<<<< HEAD
->>>>>>> dd13628 (add class input_number_validation)
-=======
->>>>>>> d678f89880ed9738e08d6bfc6a5bbe452b5a8c49
+
 
 input_value_validator = input_validator()
 

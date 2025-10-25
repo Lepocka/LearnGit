@@ -20,20 +20,41 @@ def operator_instruction():
     print('2: *')
     print('3: /')
 
-def calculating(operator, first_num, second_num):
-    while True:
-        if float(operator) == 0:
-            return float(first_num) + float(second_num)
-        elif float(operator) == 1:
-            return float(first_num) - float(second_num)
-        elif float(operator) == 2:
-            return float(first_num) * float(second_num)
-        elif float(operator) == 3:
-            return float(first_num) / float(second_num)
+
+class Calculator:
+    def __init__(self, operator, first_num, second_num):
+        self.operator = operator
+        self.first_num = first_num
+        self.second_num = second_num
+    
+    def addition(self) -> float:
+        return float(self.first_num) + float(self.second_num)
+    
+    def subtraction(self) -> float:
+        return float(self.first_num) - float(self.second_num)
+    
+    def multiplication(self) -> float:
+        return float(self.first_num) * float(self.second_num)
+    
+    def division(self) -> float:
+        return float(self.first_num) / float(self.second_num)
+    
+    def calculating(self) -> float:
+        if float(self.operator) == 0:
+            return self.addition()
+        elif float(self.operator) == 1:
+            return self.subtraction()
+        elif float(self.operator) == 2:
+            return self.multiplication()
+        elif float(self.operator) == 3:
+            return self.division()
         else:
             print('Incorrect input')
             operator_instruction()
-            operator = input('Choose operator again: ')
+            new_operator = input('Choose operator again: ')
+            new_operator = number_validation(new_operator)
+            self.operator = new_operator
+            return self.calculating()
 
 first_number = input('Input first number: ')
 
@@ -49,6 +70,8 @@ input_operator = input("Choose operator: ")
 
 input_operator = number_validation(input_operator)
 
-result = calculating(input_operator, first_number, second_number)
+calculator = Calculator(input_operator, first_number, second_number)
+
+result = calculator.calculating()
 
 print(f'Result: {result}')

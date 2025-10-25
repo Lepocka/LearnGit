@@ -1,18 +1,18 @@
 class input_validator:
-    def __init__(self, input_value: str = ''):
+    def __init__(self, input_value: str = '') -> None:
         self.input_value = input_value
     
-    def set_input_value(self, input_value):
+    def set_input_value(self, input_value) -> None:
         self.input_value = input_value
 
-    def is_number(self, input_number):
+    def is_number(self, input_number) -> bool:
         try:
             float(input_number)
             return True
         except ValueError:
             return False
 
-    def get_correct_input_number(self):
+    def get_correct_input_number(self) -> str:
         input_value = self.input_value
         
         while not (self.is_number(input_value)):
@@ -21,7 +21,7 @@ class input_validator:
 
         return input_value
     
-    def get_correct_input_operator(self):
+    def get_correct_input_operator(self) -> str:
         input_value = self.input_value
 
         while not self.is_number(input_value) or not float(input_value) in [0, 1, 2, 3]:
@@ -30,7 +30,7 @@ class input_validator:
         
         return input_value
     
-def operator_instruction():
+def operator_instruction() -> None:
     print('0: +')
     print('1: -')
     print('2: *')

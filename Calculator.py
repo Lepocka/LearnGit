@@ -1,25 +1,40 @@
-def is_number(input_number):
-    try:
-        float(input_number)
-        return True
-    except ValueError:
-        return False
+class input_validator:
+    def __init__(self, input_value: str = '') -> None:
+        self.input_value = input_value
+    
+    def set_input_value(self, input_value) -> None:
+        self.input_value = input_value
 
-def number_validation(input_number):
-    number = input_number
+    def is_number(self, input_number) -> bool:
+        try:
+            float(input_number)
+            return True
+        except ValueError:
+            return False
 
-    while not (is_number(number)):
-        print('Incorrect input')
-        number = input('Input again: ')
+    def get_correct_input_number(self) -> str:
+        input_value = self.input_value
+        
+        while not (self.is_number(input_value)):
+            print('Incorrect input')
+            input_value = input('Input number again: ')
 
-    return number
+        return input_value
+    
+    def get_correct_input_operator(self) -> str:
+        input_value = self.input_value
 
-def operator_instruction():
+        while not self.is_number(input_value) or not float(input_value) in [0, 1, 2, 3]:
+            print('Incorrect input')
+            input_value = input('Choose operator again: ')
+        
+        return input_value
+    
+def operator_instruction() -> None:
     print('0: +')
     print('1: -')
     print('2: *')
     print('3: /')
-
 
 class Calculator:
     def __init__(self, operator, first_num, second_num):
@@ -48,27 +63,23 @@ class Calculator:
             return self.multiplication()
         elif float(self.operator) == 3:
             return self.division()
-        else:
-            print('Incorrect input')
-            operator_instruction()
-            new_operator = input('Choose operator again: ')
-            new_operator = number_validation(new_operator)
-            self.operator = new_operator
-            return self.calculating()
 
-first_number = input('Input first number: ')
 
-first_number = number_validation(first_number)
+input_value_validator = input_validator()
 
-second_number = input('Input second number: ')
+input_value_validator.set_input_value(input('Input first number: '))
 
-second_number = number_validation(second_number)
+first_number = input_value_validator.get_correct_input_number()
+
+input_value_validator.set_input_value(input('Input second number: '))
+
+second_number = input_value_validator.get_correct_input_number()
 
 operator_instruction()
 
-input_operator = input("Choose operator: ")
+input_value_validator.set_input_value(input('Choose operator: '))
 
-input_operator = number_validation(input_operator)
+input_operator = input_value_validator.get_correct_input_operator()
 
 calculator = Calculator(input_operator, first_number, second_number)
 

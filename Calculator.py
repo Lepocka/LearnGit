@@ -30,11 +30,6 @@ class input_validator:
         
         return input_value
     
-def operator_instruction() -> None:
-    print('0: +')
-    print('1: -')
-    print('2: *')
-    print('3: /')
 
 class Calculator:
     def __init__(self, operator, first_num, second_num):
@@ -65,24 +60,39 @@ class Calculator:
             return self.division()
 
 
-input_value_validator = input_validator()
+class main:
+    def __init__(self) -> None:
+        pass
 
-input_value_validator.set_input_value(input('Input first number: '))
+    def operator_instruction(self) -> None:
+        print('0: +')
+        print('1: -')
+        print('2: *')
+        print('3: /')
 
-first_number = input_value_validator.get_correct_input_number()
+    def run(self) -> None:
+        input_value_validator = input_validator()
 
-input_value_validator.set_input_value(input('Input second number: '))
+        input_value_validator.set_input_value(input('Input first number: '))
 
-second_number = input_value_validator.get_correct_input_number()
+        first_number = input_value_validator.get_correct_input_number()
 
-operator_instruction()
+        input_value_validator.set_input_value(input('Input second number: '))
 
-input_value_validator.set_input_value(input('Choose operator: '))
+        second_number = input_value_validator.get_correct_input_number()
 
-input_operator = input_value_validator.get_correct_input_operator()
+        self.operator_instruction()
 
-calculator = Calculator(input_operator, first_number, second_number)
+        input_value_validator.set_input_value(input('Choose operator: '))
 
-result = calculator.calculating()
+        input_operator = input_value_validator.get_correct_input_operator()
 
-print(f'Result: {result}')
+        calculator = Calculator(input_operator, first_number, second_number)
+
+        result = calculator.calculating()
+
+        print(f'Result: {result}')
+
+if __name__ == '__main__':
+    app = main()
+    app.run()

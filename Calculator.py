@@ -1,3 +1,11 @@
+from enum import Enum
+
+class Operator(Enum):
+    ADDITION = '+'
+    SUBTRACTION = "-"
+    MULTIPLICATION = '*'
+    DIVISION = "/"
+
 class input_validator:
     def __init__(self, input_value: str = '') -> None:
         self.input_value = input_value
@@ -21,14 +29,14 @@ class input_validator:
 
         return input_value
     
-    def get_correct_input_operator(self) -> str:
+    def get_correct_input_operator(self) -> Operator:
         input_value = self.input_value
 
-        while not self.is_number(input_value) or not float(input_value) in [0, 1, 2, 3]:
+        while not input_value in [op.value for op in Operator]:
             print('Incorrect input')
             input_value = input('Choose operator again: ')
         
-        return input_value
+        return Operator(input_value)
     
 
 class Calculator:
@@ -50,13 +58,13 @@ class Calculator:
         return float(self.first_num) / float(self.second_num)
     
     def calculating(self) -> float:
-        if float(self.operator) == 0:
+        if self.operator == Operator.ADDITION:
             return self.addition()
-        elif float(self.operator) == 1:
+        elif self.operator == Operator.SUBTRACTION:
             return self.subtraction()
-        elif float(self.operator) == 2:
+        elif self.operator == Operator.MULTIPLICATION:
             return self.multiplication()
-        elif float(self.operator) == 3:
+        elif self.operator == Operator.DIVISION:
             return self.division()
 
 
@@ -65,10 +73,10 @@ class main:
         pass
 
     def operator_instruction(self) -> None:
-        print('0: +')
-        print('1: -')
-        print('2: *')
-        print('3: /')
+        print(f'Addition:       {Operator.ADDITION.value}')
+        print(f'Substraction:   {Operator.SUBTRACTION.value}')
+        print(f'Multiplication: {Operator.MULTIPLICATION.value}')
+        print(f'Division:       {Operator.DIVISION.value}')
 
     def run(self) -> None:
         input_value_validator = input_validator()

@@ -5,13 +5,13 @@ class MLCalculator:
     # Середнє арифметичне
     def calculate_mean(self, numbers: list[float]) -> float:
         if len(numbers) == 0:
-            return 0
+            return None
         return sum(numbers) / len(numbers)
     
     # Дисперсія
     def calculate_variance(self, numbers: list[float]) -> float:
         if len(numbers) == 0:
-            return 0
+            return None
         
         mean = self.calculate_mean(numbers)
         variance = 0
@@ -24,11 +24,13 @@ class MLCalculator:
     # Стандартне відхилення
     def calculate_standard_deviation(self, numbers: list[float]) -> float:
         variance = self.calculate_variance(numbers)
+        if variance is None:
+            return None
         return variance ** 0.5
     
     # Скалярний добуток векторів
     def calculate_dot_product(self, vector1: list[float], vector2: list[float]) -> float:
-        if len(vector1) == len(vector2):
+        if len(vector1) != len(vector2):
             print("Vectors must be of the same length")
             return None
         
@@ -41,7 +43,7 @@ class MLCalculator:
 
     # Евклідова відстань між двома точками
     def calculate_euclidean_distance(self, point1: list[float], point2: list[float]) -> float:
-        if len(point1) == len(point2):
+        if len(point1) != len(point2):
             print("Points must be of the same dimension")
             return None
         

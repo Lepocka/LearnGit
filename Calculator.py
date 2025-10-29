@@ -7,6 +7,7 @@ class Operator(Enum):
     DIVISION = "/"
 
 class InputValidator:
+
     def __init__(self, input_value: str = '') -> None:
         self.input_value = input_value
     

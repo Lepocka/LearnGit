@@ -1,4 +1,4 @@
-class input_validator:
+class InputValidator:
     def __init__(self, input_value: str = '') -> None:
         self.input_value = input_value
     
@@ -60,7 +60,7 @@ class Calculator:
             return self.division()
 
 
-class main:
+class Main:
     def __init__(self) -> None:
         pass
 
@@ -71,7 +71,7 @@ class main:
         print('3: /')
 
     def run(self) -> None:
-        input_value_validator = input_validator()
+        input_value_validator = InputValidator()
 
         input_value_validator.set_input_value(input('Input first number: '))
 
@@ -94,5 +94,5 @@ class main:
         print(f'Result: {result}')
 
 if __name__ == '__main__':
-    app = main()
+    app = Main()
     app.run()

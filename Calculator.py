@@ -47,7 +47,10 @@ class Calculator:
         return float(self.first_num) * float(self.second_num)
     
     def division(self) -> float:
-        return float(self.first_num) / float(self.second_num)
+        try:
+            return float(self.first_num) / float(self.second_num)
+        except ZeroDivisionError:
+            return None
     
     def calculating(self) -> float:
         if float(self.operator) == 0:
@@ -91,7 +94,13 @@ class main:
 
         result = calculator.calculating()
 
-        print(f'Result: {result}')
+        if result == None:
+            print('Error: Division by zero')
+            print('Try again')
+            self.run()
+        else:
+            print(f'Result: {result}')
+
 
 if __name__ == '__main__':
     app = main()

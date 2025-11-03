@@ -28,7 +28,10 @@ class MLCalculator:
         '''
         if len(numbers) == 0:
             raise ValueError("The list must be not empty")
-        return sum(numbers) / len(numbers)
+        try:
+            return sum(numbers) / len(numbers)
+        except TypeError:
+            raise TypeError("The list must contain only numerical values")
     
     # Дисперсія
     def calculate_variance(self, numbers: list[float]) -> float:
@@ -52,9 +55,6 @@ class MLCalculator:
             >>> calculate_variance([1, 2, 3, 4, 5, 6, 7])
             4.0
         '''
-        if len(numbers) == 0:
-            raise ValueError("The list must be not empty")
-        
         mean = self.calculate_mean(numbers)
 
         return sum((num - mean) ** 2 for num in numbers) / len(numbers)
@@ -81,11 +81,7 @@ class MLCalculator:
             >>> calculate_standard_deviation([1, 2, 3, 4, 5, 6, 7])
             2.0
         '''
-        try:
-            variance = self.calculate_variance(numbers)
-        except ValueError:
-            raise ValueError("The list must be not empty")
-        
+        variance = self.calculate_variance(numbers)
         return math.sqrt(variance)
     
     # Скалярний добуток векторів
@@ -115,8 +111,12 @@ class MLCalculator:
         if len(vector1) != len(vector2):
             raise ValueError("Vectors must be of the same length")
         
-        return sum(a * b for a, b in zip(vector1, vector2))
-
+        if len(vector1) == 0 or len(vector2) == 0:
+            raise ValueError("Vectors must be not empty")
+        try:
+            return sum(a * b for a, b in zip(vector1, vector2))
+        except TypeError:
+            raise TypeError("The lists must contain only numerical values")
     # Евклідова відстань між двома точками
     def calculate_euclidean_distance(self, point1: list[float], point2: list[float]) -> float:
         '''
@@ -143,11 +143,10 @@ class MLCalculator:
         '''
         if len(point1) != len(point2):
             raise ValueError("Points must be of the same dimension")
+        if len(point1) == 0 or len(point2) == 0:
+            raise ValueError("Points must be not empty")
+        try:
+            return math.sqrt(sum((a - b) ** 2 for a, b in zip(point1, point2)))
+        except TypeError:
+            raise TypeError("The lists must contain only numerical values")
         
-        distance = 0
-        for i in range(len(point1)):
-            distance += (point1[i] - point2[i]) ** 2
-
-        distance = math.sqrt(distance)
-        return math.sqrt(sum((a - b) ** 2 for a, b in zip(point1, point2)))
-    
